@@ -20,6 +20,7 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  Badge,
 } from "@chakra-ui/react"
 import React, { useState } from "react"
 import useMarvelsQuery from "../hooks/useMarvelsQuery"
@@ -31,6 +32,7 @@ import {
   ChevronRightIcon,
   ChevronUpIcon,
 } from "@chakra-ui/icons"
+import AddMarvelFormModal from "../components/Form/AddMarvelFormModal"
 
 const years = [2008, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
 
@@ -60,6 +62,7 @@ const Marvel = () => {
   } = data?.marvels.paginator || {}
 
   const handlePageLimit = (e) => {
+    setPage(1)
     setLimit(Number(e.target.value))
   }
 
@@ -100,6 +103,7 @@ const Marvel = () => {
 
   return (
     <>
+      <AddMarvelFormModal />
       <Stack mb={5} direction="row">
         <Box>
           <Select onChange={handlePageLimit} value={limit}>
@@ -168,7 +172,11 @@ const Marvel = () => {
               <Tr key={marvel.id}>
                 <Td>{marvel.title}</Td>
                 <Td>{marvel.year}</Td>
-                <Td>{marvel.type}</Td>
+                <Td>
+                  <Badge variant="solid" colorScheme={marvel.type === "movie" ? "orange" : "blue"}>
+                    {marvel.type}
+                  </Badge>
+                </Td>
               </Tr>
             ))}
           </Tbody>

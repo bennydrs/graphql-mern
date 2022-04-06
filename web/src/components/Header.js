@@ -4,6 +4,7 @@ import useLogoutMutation from "../hooks/useLogoutMutation"
 import useMeQuery from "../hooks/useMeQuery"
 import { setAccessToken } from "../utils/accessToken"
 import { Flex, Heading, Box, Link, useColorModeValue, Container, Stack } from "@chakra-ui/react"
+import { ThemeToggle } from "./ThemeToggle"
 
 const Header = () => {
   const { data, loading } = useMeQuery()
@@ -73,6 +74,7 @@ const Header = () => {
                 </Link>
 
                 {bodyMe}
+                <ThemeToggle />
               </Stack>
             </Box>
           </Flex>

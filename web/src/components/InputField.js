@@ -2,7 +2,7 @@ import { FormControl, FormErrorMessage, FormLabel, Input, Textarea } from "@chak
 import React from "react"
 import { Controller } from "react-hook-form"
 
-const InputField = ({ name, label, control, rules, textarea, ...props }) => {
+const InputField = React.forwardRef(({ name, label, control, rules, textarea, ...props }, ref) => {
   let InputOrTextarea = Input
 
   if (textarea) {
@@ -19,12 +19,12 @@ const InputField = ({ name, label, control, rules, textarea, ...props }) => {
           <FormLabel htmlFor={name} style={{ textTransform: "capitalize" }}>
             {label}
           </FormLabel>
-          <InputOrTextarea {...field} {...props} disabled={isSubmitting} />
+          <InputOrTextarea {...field} {...props} ref={ref} disabled={isSubmitting} />
           {error && <FormErrorMessage>{error.message || "error"}</FormErrorMessage>}
         </FormControl>
       )}
     />
   )
-}
+})
 
 export default InputField

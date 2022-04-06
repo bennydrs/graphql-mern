@@ -41,3 +41,14 @@ export const CHANGE_PASSWORD = gql`
     }
   }
 `
+
+export const ADD_MARVEL = gql`
+  mutation AddMarvel($title: String!, $year: Int!, $type: String!) {
+    addMarvel(newMarvel: { title: $title, year: $year, type: $type }) {
+      id
+      title
+      year
+      type
+    }
+  }
+`
